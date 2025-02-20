@@ -2,8 +2,6 @@ import maya.cmds as cmds
 from PySide2 import QtWidgets,QtGui,QtCore
 import math
 
-objectName = "timeSliderScaleTool"
-
 def resetTimeSlider(scaledStart,scaledEnd):
 
     startLimit = cmds.playbackOptions(q = True, animationStartTime =True)
@@ -287,6 +285,8 @@ class MainGUI(QtWidgets.QMainWindow):
         self.setFrameExpandValue(self.expandFrame)
 
 def main():
+    objectName = "timeSliderScaleTool"
+
     desktop       = QtWidgets.QApplication.desktop()
     mayaMainWindow = getTopLevelWidget('MayaWindow')
     activeScreen  = desktop.screenNumber(mayaMainWindow)
@@ -297,6 +297,8 @@ def main():
 
     mainGUI = MainGUI(mayaMainWindow)
     mainGUI.setObjectName(objectName)
+    mainGUI.loadOption()
+
     mainGUI.setWindowTitle(objectName)
     mainGUI.resize(50,40)
 
