@@ -286,13 +286,15 @@ class MainGUI(QtWidgets.QMainWindow):
 
 def main():
     objectName = "timeSliderScaleTool"
-
-    desktop       = QtWidgets.QApplication.desktop()
+    
     mayaMainWindow = getTopLevelWidget('MayaWindow')
-    activeScreen  = desktop.screenNumber(mayaMainWindow)
-    desktopRect = desktop.screenGeometry(activeScreen)
-        
-    windowCenter = mayaMainWindow.rect().center()
+    desktopRect = mayaMainWindow.geometry()
+    
+    movePoint = QtCore.QPoint(
+                int(desktopRect.width() * 0.5 + desktopRect.topLeft().x()),
+                int(desktopRect.height() * 0.5 + desktopRect.topLeft().y())
+    )
+    
     windowCheck(objectName,mayaMainWindow)
 
     mainGUI = MainGUI(mayaMainWindow)
@@ -303,4 +305,4 @@ def main():
     mainGUI.resize(50,40)
 
     mainGUI.show()
-    mainGUI.move(desktopRect.topLeft() + mayaMainWindow.rect().topLeft() + windowCenter)
+    mainGUI.move(movePoint)
