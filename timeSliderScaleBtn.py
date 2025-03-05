@@ -276,10 +276,10 @@ class MainGUI(QtWidgets.QMainWindow):
         self.extendFrameBtn.setText(str(frame))
 
     def saveOption(self):    
-        cmds.optionVar(stringValue = [objectName,self.expandFrame])
+        cmds.optionVar(stringValue = [self.objectName,self.expandFrame])
 
     def loadOption(self):    
-        if cmds.optionVar(exists = objectName):
+        if cmds.optionVar(exists = self.objectName):
             self.expandFrame = int(cmds.optionVar(q = objectName))
         
         self.setFrameExpandValue(self.expandFrame)
